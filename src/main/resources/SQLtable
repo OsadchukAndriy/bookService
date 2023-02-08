@@ -1,0 +1,13 @@
+create table Person(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(100) NOT NULL
+);
+
+create table Book(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(100) NOT NULL ,
+    author varchar(100) NOT NULL,
+    year_of_release int NOT NULL,
+    person_id int,
+    FOREIGN KEY (person_id) references Person(id)
+);
