@@ -8,7 +8,7 @@ public class BookServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookServiceApplication.class, args);
-		System.out.println("Hi!");
+		System.out.println("Ok!");
 	}
 
 }
