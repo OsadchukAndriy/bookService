@@ -49,7 +49,7 @@ public class BookController {
         return "books/new";
     }
 
-    @PostMapping("people/books")
+    @PostMapping("/books")
     public String create(@ModelAttribute("book") @Valid Book book,
     BindingResult bindingResult){
         if(bindingResult.hasErrors()){
