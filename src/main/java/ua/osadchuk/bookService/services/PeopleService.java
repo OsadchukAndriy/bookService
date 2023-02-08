@@ -1,11 +1,14 @@
 package ua.osadchuk.bookService.services;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.osadchuk.bookService.models.Book;
 import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.repositories.PeopleRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,14 +41,13 @@ public class PeopleService {
         peopleRepository.save(person);
     }
 
-    @Transactional
-    public void update(int id, Person updatedPerson) {
-        updatedPerson.setId(id);
-        peopleRepository.save(updatedPerson);
-    }
-
-    @Transactional
-    public void delete(int id) {
-        peopleRepository.deleteById(id);
+    public List<Book> getBooksByPersonId(int id) {
+        Optional<Person> person = peopleRepository.findById(id);
+        Hibernate.initialize(person.get().getBooks());
+        if (person.isPresent()) {
+            return person.get().getBooks();
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
