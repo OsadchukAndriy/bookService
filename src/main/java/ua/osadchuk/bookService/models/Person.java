@@ -1,6 +1,8 @@
 package ua.osadchuk.bookService.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -12,6 +14,8 @@ public class Person {
     @Column(name = "id")
     private int id;
 
+    @NotEmpty(message = "Name must not be empty")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters long")
     @Column(name = "name")
     private String name;
 
