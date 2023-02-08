@@ -16,7 +16,7 @@ public class Book {
     private int id;
 
     @Column(name = "name")
-//    @Size(min = 2, max = 100, message = "Book name must be between 2 and 100 characters long")
+    @Size(min = 2, max = 100, message = "Book name must be between 2 and 100 characters long")
     private String name;
 
 //    @NotEmpty(message = "Author must not be empty")
