@@ -8,6 +8,7 @@
 <body>
 <p th:text="${person.getName()}">VALUE</p>
 
+
 <div th:if="${books.isEmpty()}">
     <p>The man hasn't picked up any books yet</p>
     <hr/>
@@ -22,6 +23,13 @@
     </table>
     <hr/>
 </div>
+<form th:method="GET" th:action="@{/books/new}">
+    <input type="submit" value="Create a new book"/>
+</form>
+
+<form th:method="GET" th:action="@{/}">
+<input type="submit" value="Return"/>
+</form>
 
 </body>
 </html>

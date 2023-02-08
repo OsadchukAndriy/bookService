@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.osadchuk.bookService.models.Book;
+import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.repositories.BooksRepository;
 
 import java.util.List;
@@ -43,5 +44,9 @@ public class BooksService {
     }
     public void delete(int id){
         booksRepository.deleteById(id);
+    }
+
+    public Person getBookOwner(int id) {
+        return booksRepository.findById(id).map(Book::getOwner).orElse(null);
     }
 }
