@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.repositories.PeopleRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,7 +20,32 @@ public class PeopleService {
         this.peopleRepository = peopleRepository;
     }
 
+    public List<Person> findAll() {
+        return peopleRepository.findAll();
+    }
+
+    public Person findOne(int id) {
+        Optional<Person> foundPerson = peopleRepository.findById(id);
+        return foundPerson.orElse(null);
+    }
+
     public Optional<Person> getPersonByName(String name) {
         return peopleRepository.findByName(name);
+    }
+
+    @Transactional
+    public void save(Person person) {
+        peopleRepository.save(person);
+    }
+
+    @Transactional
+    public void update(int id, Person updatedPerson) {
+        updatedPerson.setId(id);
+        peopleRepository.save(updatedPerson);
+    }
+
+    @Transactional
+    public void delete(int id) {
+        peopleRepository.deleteById(id);
     }
 }
