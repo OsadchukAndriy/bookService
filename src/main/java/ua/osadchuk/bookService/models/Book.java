@@ -1,6 +1,10 @@
 package ua.osadchuk.bookService.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Book")
@@ -12,11 +16,16 @@ public class Book {
     private int id;
 
     @Column(name = "name")
+    @Size(min = 2, max = 100, message = "Book name must be between 2 and 100 characters long")
     private String name;
 
+    @NotEmpty(message = "Author must not be empty")
+    @Size(min = 2, max = 100, message = "Author name must be between 2 and 100 characters long")
     @Column(name = "author")
     private String author;
 
+    @Min(value = 1500, message = "Year must be greater than 1500")
+    @Max(value = 2023, message = "The year must be less than 2023")
     @Column(name = "year_of_release")
     private int yearOfRealise;
 
