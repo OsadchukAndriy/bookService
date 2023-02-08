@@ -23,7 +23,25 @@ public class BooksService {
         return booksRepository.findAll();
     }
 
-    public Optional<Book> findOne(int id){
+    public Optional<Book> findOne(int id) {
         return booksRepository.findById(id);
+    }
+
+    @Transactional
+    public void cave(Book book) {
+        booksRepository.save(book);
+    }
+
+    @Transactional
+    public void update(int id, Book updatedBook) {
+        Book book = booksRepository.findById(id).get();
+        updatedBook.setId(id);
+        updatedBook.setOwner(book.getOwner());
+
+        booksRepository.save(updatedBook);
+
+    }
+    public void delete(int id){
+        booksRepository.deleteById(id);
     }
 }
