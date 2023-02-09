@@ -6,6 +6,26 @@
 </head>
 <body>
 
+<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+    <label for="name">Введите название: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+    <br/>
+    <label for="yearOfRealise">Введите год выхода: </label>
+    <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
+        Error
+    </div>
+    <br/>
+    <col>
+    <label for="author">Введите автора: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
+    <br/>
+    <input type="submit" value="Создать!"/>
+</form>
+
+
 <p th:text="${person.getName()}">VALUE</p>
 
 
@@ -29,27 +49,13 @@
     <hr/>
 </div>
 
-<form th:method="POST" th:action="@{/books}" th:object="${book}">
-    <label for="name">Введите название: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
-    <br/>
-    <label for="yearOfRealise">Введите год выхода: </label>
-    <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-    <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
-        Error
-    </div>
-    <br/>
-    <label for="author">Введите автора: </label>
-    <input type="text" th:field="*{author}" id="author"/>
-    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
-    <br/>
-    <input type="submit" value="Создать!"/>
-</form>
-
-
 
 </body>
+
+
+<form th:method="GET" th:action="@{/books/new}">
+    <input type="submit" value="Create a new book"/>
+</form>
 
 <form th:method="GET" th:action="@{/}">
     <input type="submit" value="Return"/>

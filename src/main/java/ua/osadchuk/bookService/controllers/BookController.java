@@ -50,14 +50,16 @@ public class BookController {
         return "books/new";
     }
 
-    @PostMapping("/books")
-    public String create(@ModelAttribute("book") @Valid Book book,
+    @PostMapping("/books/{id}")
+    public String create(@PathVariable("id") int id,@ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "books/new";
         }
+        book.setOwner(peopleService.findOne(id));
+        book.setId(0);
         booksService.save(book);
-        return "redirect:/books";
+        return "redirect:/people/" + id;
     }
 
     @DeleteMapping("books/{id}")
