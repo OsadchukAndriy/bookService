@@ -23,9 +23,10 @@ public class BookController {
         this.booksService = booksService;
         this.peopleService = peopleService;
     }
+
     @GetMapping("books/{id}")
     public String show(@PathVariable("id") int id, Model model,
-                       @ModelAttribute("person")Person person){
+                       @ModelAttribute("person") Person person) {
         model.addAttribute("book", booksService.findOne(id));
 
         Person bookOwner = booksService.getBookOwner(id);
@@ -39,27 +40,28 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("books", booksService.findAll());
         return "books/index";
     }
 
     @GetMapping("books/new")
-    public String newBook(@ModelAttribute("book") @Valid Book Book){
+    public String newBook(@ModelAttribute("book") @Valid Book book) {
         return "books/new";
     }
 
     @PostMapping("/books")
     public String create(@ModelAttribute("book") @Valid Book book,
-    BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "books/new";
         }
-        booksService.cave(book);
+        booksService.save(book);
         return "redirect:/books";
     }
+
     @DeleteMapping("books/{id}")
-    public String delete(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") int id) {
         int i = booksService.getBookOwner(id).getId();
         booksService.delete(id);
         return "redirect:/people/" + i;

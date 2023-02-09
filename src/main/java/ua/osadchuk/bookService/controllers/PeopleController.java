@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ua.osadchuk.bookService.models.Book;
 import ua.osadchuk.bookService.models.Person;
+import ua.osadchuk.bookService.services.BooksService;
 import ua.osadchuk.bookService.services.PeopleService;
 import ua.osadchuk.bookService.util.PersonValidator;
 
@@ -16,12 +18,13 @@ import javax.validation.Valid;
 public class PeopleController {
 
     private final PeopleService peopleService;
-
+    private final BooksService booksService;
     private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PeopleService peopleService, PersonValidator personValidator) {
+    public PeopleController(PeopleService peopleService, BooksService booksService, PersonValidator personValidator) {
         this.peopleService = peopleService;
+        this.booksService = booksService;
         this.personValidator = personValidator;
     }
 
@@ -32,9 +35,11 @@ public class PeopleController {
     }
 
     @GetMapping("people/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@ModelAttribute("book") Book book,
+                       @PathVariable("id") int id, Model model) {
         model.addAttribute("person", peopleService.findOne(id));
         model.addAttribute("books", peopleService.getBooksByPersonId(id));
+        model.addAttribute("book");
         return "people/show";
     }
 

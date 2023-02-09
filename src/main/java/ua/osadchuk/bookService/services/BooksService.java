@@ -29,7 +29,7 @@ public class BooksService {
     }
 
     @Transactional
-    public void cave(Book book) {
+    public void save(Book book) {
         booksRepository.save(book);
     }
 
