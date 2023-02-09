@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Show</title>
 </head>
 <body>
@@ -20,15 +19,26 @@
     <br/>
     <table th:each="book : ${books}">
         <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">book</tr>
+        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form>
     </table>
     <hr/>
+
+<!--    <table th:each="book : ${books}">-->
+<!--        <a th:href="@{/books/{id}(id=${book.getId()})}">-->
+<!--            <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">book</tr></a>-->
+<!--    </table>-->
+
 </div>
+</body>
+
 <form th:method="GET" th:action="@{/books/new}">
     <input type="submit" value="Create a new book"/>
 </form>
 
 <form th:method="GET" th:action="@{/}">
-<input type="submit" value="Return"/>
+    <input type="submit" value="Return"/>
 </form>
 
 </body>

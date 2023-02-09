@@ -54,4 +54,5 @@ public class PeopleController {
         peopleService.save(person);
         return "redirect:/";
     }
+
 }

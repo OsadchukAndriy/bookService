@@ -10,10 +10,10 @@ import ua.osadchuk.bookService.services.BooksService;
 import ua.osadchuk.bookService.services.PeopleService;
 
 import javax.validation.Valid;
-import java.util.Optional;
+
 
 @Controller
-@RequestMapping("/")
+@RequestMapping()
 public class BookController {
 
     private final BooksService booksService;
@@ -60,7 +60,8 @@ public class BookController {
     }
     @DeleteMapping("books/{id}")
     public String delete(@PathVariable("id") int id){
+        int i = booksService.getBookOwner(id).getId();
         booksService.delete(id);
-        return "redirect:/books";
+        return "redirect:/people/" + i;
     }
 }
