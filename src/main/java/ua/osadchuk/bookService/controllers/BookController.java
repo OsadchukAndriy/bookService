@@ -51,7 +51,7 @@ public class BookController {
     }
 
     @PostMapping("/books/{id}")
-    public String create(@PathVariable("id") int id,@ModelAttribute("book") @Valid Book book,
+    public String create(@PathVariable("id") int id, @ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "books/new";

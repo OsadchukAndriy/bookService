@@ -1,36 +1,31 @@
 package ua.osadchuk.bookService.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.osadchuk.bookService.models.Book;
-import ua.osadchuk.bookService.models.Person;
-import ua.osadchuk.bookService.services.BooksService;
+import ua.osadchuk.bookService.security.PersonDetails;
 import ua.osadchuk.bookService.services.PeopleService;
-import ua.osadchuk.bookService.util.PersonValidator;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping()
 public class PeopleController {
 
     private final PeopleService peopleService;
-    private final BooksService booksService;
-    private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PeopleService peopleService, BooksService booksService, PersonValidator personValidator) {
+    public PeopleController(PeopleService peopleService) {
         this.peopleService = peopleService;
-        this.booksService = booksService;
-        this.personValidator = personValidator;
     }
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("people", peopleService.findAll());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        model.addAttribute("people", personDetails.getPerson());
         return "index";
     }
 
@@ -42,22 +37,4 @@ public class PeopleController {
         model.addAttribute("book");
         return "people/show";
     }
-
-    @GetMapping("people/new")
-    public String newPerson(@ModelAttribute("person") Person person) {
-        return "people/new";
-    }
-
-    @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person,
-                         BindingResult bindingResult) {
-        personValidator.validate(person, bindingResult);
-
-        if (bindingResult.hasErrors())
-            return "people/new";
-
-        peopleService.save(person);
-        return "redirect:/";
-    }
-
 }

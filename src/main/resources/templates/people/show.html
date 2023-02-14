@@ -6,25 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
-    <label for="name">Введите название: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
-    <br/>
-    <label for="yearOfRealise">Введите год выхода: </label>
-    <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-    <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
-        Error
-    </div>
-    <br/>
-    <col>
-    <label for="author">Введите автора: </label>
-    <input type="text" th:field="*{author}" id="author"/>
-    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
-    <br/>
-    <input type="submit" value="Создать!"/>
-</form>
-
+<h3>BOOK SERVICE:</h3>
 
 <p th:text="${person.getName()}">VALUE</p>
 
@@ -36,29 +18,54 @@
 
 <div th:if="${!books.isEmpty()}">
     <hr/>
-    <b>Books:</b>
+    <br/>
+    <b>YOUR BOOKS:</b>
+    <br/>
     <br/>
     <table th:each="book : ${books}">
 
-        <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">book</tr>
+        <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()} + '  ' ">book</tr>
         <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
             <input type="submit" value="Delete"/>
         </form>
-
+        <br>
     </table>
     <hr/>
+    <br/>
 </div>
 
+<h3>CREATE A NEW BOOK:</h3>
+
+<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+    <label for="name">Enter the title: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+    <br/>
+    <br/>
+    <label for="yearOfRealise">Enter release year: </label>
+    <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
+        Error
+    </div>
+    <br/>
+    <br/>
+    <col>
+    <label for="author">Enter author: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
+    <br/>
+    <br/>
+    <input type="submit" value="CREATE!"/>
+    <br/>
+    <br/>
+    <hr/>
+    <br/>
+</form>
 
 </body>
 
-
-<form th:method="GET" th:action="@{/books/new}">
-    <input type="submit" value="Create a new book"/>
-</form>
-
 <form th:method="GET" th:action="@{/}">
-    <input type="submit" value="Return"/>
+    <input type="submit" value="RETURN"/>
 </form>
 
 </body>

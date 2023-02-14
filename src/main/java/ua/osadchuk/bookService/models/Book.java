@@ -19,13 +19,13 @@ public class Book {
     @Size(min = 2, max = 100, message = "Book name must be between 2 and 100 characters long")
     private String name;
 
-//    @NotEmpty(message = "Author must not be empty")
-//    @Size(min = 2, max = 100, message = "Author name must be between 2 and 100 characters long")
+    @NotEmpty(message = "Author must not be empty")
+    @Size(min = 2, max = 100, message = "Author name must be between 2 and 100 characters long")
     @Column(name = "author")
     private String author;
-//
-//    @Min(value = 1500, message = "Year must be greater than 1500")
-//    @Max(value = 2023, message = "The year must be less than 2023")
+
+    @Min(value = 1500, message = "Year must be greater than 1500")
+    @Max(value = 2023, message = "The year must be less than 2023")
     @Column(name = "year_of_release")
     private int yearOfRealise;
 
