@@ -28,6 +28,10 @@ public class PeopleController {
         model.addAttribute("people", personDetails.getPerson());
         int a = personDetails.getPerson().getId();
 
+        if(personDetails.getPerson().getRole().equals("ROLE_ADMIN")){
+            return admin();
+        }
+
         return show(book,a,model);
     }
 
@@ -38,5 +42,9 @@ public class PeopleController {
         model.addAttribute("books", peopleService.getBooksByPersonId(id));
         model.addAttribute("book");
         return "people/show";
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
     }
 }
