@@ -27,6 +27,7 @@
         <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()} + '  ' ">book</tr>
         <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
             <input type="submit" value="Delete"/>
+            <br/>
         </form>
         <br>
     </table>
@@ -36,7 +37,7 @@
 
 <h3>CREATE A NEW BOOK:</h3>
 
-<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+<form th:method="POST" th:action="@{/books/{id}(id=${person.getId()})}" th:object="${book}">
     <label for="name">Enter the title: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>

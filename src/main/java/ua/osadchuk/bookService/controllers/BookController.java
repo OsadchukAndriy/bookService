@@ -59,7 +59,7 @@ public class BookController {
         book.setOwner(peopleService.findOne(id));
         book.setId(0);
         booksService.save(book);
-        return "redirect:/people/" + id;
+        return "redirect:/";
     }
 
     @DeleteMapping("books/{id}")

@@ -22,11 +22,13 @@ public class PeopleController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(@ModelAttribute("book") Book book,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         model.addAttribute("people", personDetails.getPerson());
-        return "index";
+        int a = personDetails.getPerson().getId();
+
+        return show(book,a,model);
     }
 
     @GetMapping("people/{id}")
