@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Index</title>
 </head>
 <body>
-<p>   Hello Admin    </p>
+
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getName() + ', ' + person.getRole()}">user</a>
+    <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+        <input type="submit" value="СHANGE ROLE"/>
+        <br/>
+    </form>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Создать нового человека</a>
+
 </body>
 </html>

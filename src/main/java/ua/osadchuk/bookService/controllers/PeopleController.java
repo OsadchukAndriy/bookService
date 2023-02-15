@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.osadchuk.bookService.models.Book;
+import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.security.PersonDetails;
 import ua.osadchuk.bookService.services.PeopleService;
 
@@ -29,7 +30,7 @@ public class PeopleController {
         int a = personDetails.getPerson().getId();
 
         if(personDetails.getPerson().getRole().equals("ROLE_ADMIN")){
-            return admin();
+            return admin(model);
         }
 
         return show(book,a,model);
@@ -44,7 +45,21 @@ public class PeopleController {
         return "people/show";
     }
     @GetMapping("/admin")
-    public String admin(){
+    public String admin(Model model){
+        model.addAttribute("people", peopleService.findAll());
         return "admin";
+    }
+
+    @PatchMapping("/admin/{id}")
+    public String updateRole(@PathVariable("id") int id, Model model){
+        Person person = peopleService.findOne(id);
+        if(person.getRole().equals("ROLE_USER")){
+            person.setRole("ROLE_ADMIN");
+        }
+        else if(person.getRole().equals("ROLE_ADMIN")){
+            person.setRole("ROLE_USER");
+        }
+        peopleService.save(person);
+        return admin(model);
     }
 }
