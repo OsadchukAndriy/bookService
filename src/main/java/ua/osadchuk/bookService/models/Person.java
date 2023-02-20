@@ -27,6 +27,9 @@ public class Person {
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
 
+    @Column(name = "is_block")
+    private boolean isBlock;
+
     public Person() {
     }
 
@@ -72,6 +75,15 @@ public class Person {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+
+    public boolean isBlock() {
+        return isBlock;
+    }
+
+    public void setBlock(boolean block) {
+        isBlock = block;
     }
 
     @Override

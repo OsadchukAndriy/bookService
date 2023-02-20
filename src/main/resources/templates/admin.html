@@ -14,17 +14,34 @@
 <table th:each="person : ${people}">
 
     <tr th:href="@{/people/{id}(id=${person.getId()})}"
-        th:text="${person.getName() + ', ' + person.getRole()}">user
+        th:text="${person.getName()}">user
     </tr>
     &nbsp;
-    <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
-        <input type="submit" value="CHANGE ROLE" style="color: darkgreen"/>
-    </form>
+    <div th:if="${person.getRole().equals('ROLE_USER')}">
+        <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+            <input type="submit" value="MAKE ADMIN" style="color: darkgreen"/>
+        </form>
+    </div>
+    <div th:if="${person.getRole().equals('ROLE_ADMIN')}">
+        <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+            <input type="submit" value="MAKE USER" style="color: darkgreen"/>
+        </form>
+    </div>
     &nbsp;
+    <div th:if="${person.isBlock() == true}">
+        <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
+            <input type="submit" value="UNBLOCK USER" style="color: darkred"/>
+            <br/>
+        </form>
+    </div>
+
+    <div th:if="${person.isBlock() == false}">
+
     <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
         <input type="submit" value="BLOCK USER" style="color: darkred"/>
         <br/>
     </form>
+    </div>
     <br>
 </table>
 

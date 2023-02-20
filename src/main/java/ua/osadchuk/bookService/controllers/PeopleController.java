@@ -32,7 +32,7 @@ public class PeopleController {
         if (personDetails.getPerson().getRole().equals("ROLE_ADMIN")) {
             return admin(model);
         }
-        if (personDetails.getPerson().getRole().equals("ROLE_BLOCK")) {
+        if (personDetails.getPerson().isBlock() == true) {
             return block(model);
         }
 
@@ -74,10 +74,10 @@ public class PeopleController {
     @PatchMapping("/block/{id}")
     public String blockRole(@PathVariable("id") int id, Model model) {
         Person person = peopleService.findOne(id);
-        if (person.getRole().equals("ROLE_USER") || person.getRole().equals("ROLE_ADMIN")) {
-            person.setRole("ROLE_BLOCK");
-        } else if (person.getRole().equals("ROLE_BLOCK")) {
-            person.setRole("ROLE_USER");
+        if(person.isBlock() == true){
+            person.setBlock(false);
+        } else if(person.isBlock() == false){
+            person.setBlock(true);
         }
         peopleService.save(person);
         return admin(model);
