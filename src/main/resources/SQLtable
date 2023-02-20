@@ -3,7 +3,8 @@ create table Person
     id       int PRIMARY KEY AUTO_INCREMENT,
     name     varchar(100)  NOT NULL,
     password varchar(1000) NOT NULL,
-    role     varchar(100)  NOT NULL
+    role     varchar(100)  NOT NULL,
+    is_block boolean
 );
 
 create table Book
