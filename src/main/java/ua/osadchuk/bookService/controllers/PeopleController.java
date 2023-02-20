@@ -23,17 +23,20 @@ public class PeopleController {
     }
 
     @GetMapping("/")
-    public String index(@ModelAttribute("book") Book book,Model model) {
+    public String index(@ModelAttribute("book") Book book, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         model.addAttribute("people", personDetails.getPerson());
         int a = personDetails.getPerson().getId();
 
-        if(personDetails.getPerson().getRole().equals("ROLE_ADMIN")){
+        if (personDetails.getPerson().getRole().equals("ROLE_ADMIN")) {
             return admin(model);
         }
+        if (personDetails.getPerson().getRole().equals("ROLE_BLOCK")) {
+            return block(model);
+        }
 
-        return show(book,a,model);
+        return show(book, a, model);
     }
 
     @GetMapping("people/{id}")
@@ -44,19 +47,36 @@ public class PeopleController {
         model.addAttribute("book");
         return "people/show";
     }
+
     @GetMapping("/admin")
-    public String admin(Model model){
+    public String admin(Model model) {
         model.addAttribute("people", peopleService.findAll());
         return "admin";
     }
 
     @PatchMapping("/admin/{id}")
-    public String updateRole(@PathVariable("id") int id, Model model){
+    public String updateRole(@PathVariable("id") int id, Model model) {
         Person person = peopleService.findOne(id);
-        if(person.getRole().equals("ROLE_USER")){
+        if (person.getRole().equals("ROLE_USER")) {
             person.setRole("ROLE_ADMIN");
+        } else if (person.getRole().equals("ROLE_ADMIN")) {
+            person.setRole("ROLE_USER");
         }
-        else if(person.getRole().equals("ROLE_ADMIN")){
+        peopleService.save(person);
+        return admin(model);
+    }
+
+    @GetMapping("/block")
+    public String block(Model model) {
+        return "block";
+    }
+
+    @PatchMapping("/block/{id}")
+    public String blockRole(@PathVariable("id") int id, Model model) {
+        Person person = peopleService.findOne(id);
+        if (person.getRole().equals("ROLE_USER") || person.getRole().equals("ROLE_ADMIN")) {
+            person.setRole("ROLE_BLOCK");
+        } else if (person.getRole().equals("ROLE_BLOCK")) {
             person.setRole("ROLE_USER");
         }
         peopleService.save(person);
