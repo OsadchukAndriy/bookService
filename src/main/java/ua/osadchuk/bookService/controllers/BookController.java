@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping()
+@RequestMapping("/books")
 public class BookController {
 
     private final BooksService booksService;
@@ -24,7 +24,7 @@ public class BookController {
         this.peopleService = peopleService;
     }
 
-    @GetMapping("books/{id}")
+    @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model,
                        @ModelAttribute("person") Person person) {
         model.addAttribute("book", booksService.findOne(id));
@@ -39,18 +39,18 @@ public class BookController {
 
     }
 
-    @GetMapping("/books")
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("books", booksService.findAll());
         return "books/index";
     }
 
-    @GetMapping("books/new")
+    @GetMapping("/new")
     public String newBook(@ModelAttribute("book") @Valid Book book) {
         return "books/new";
     }
 
-    @PostMapping("/books/{id}")
+    @PostMapping("/{id}")
     public String create(@PathVariable("id") int id, @ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -62,7 +62,7 @@ public class BookController {
         return "redirect:/";
     }
 
-    @DeleteMapping("books/{id}")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         int i = booksService.getBookOwner(id).getId();
         booksService.delete(id);

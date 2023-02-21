@@ -37,10 +37,10 @@
 
     <div th:if="${person.isBlock() == false}">
 
-    <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
-        <input type="submit" value="BLOCK USER" style="color: darkred"/>
-        <br/>
-    </form>
+        <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
+            <input type="submit" value="BLOCK USER" style="color: darkred"/>
+            <br/>
+        </form>
     </div>
     <br>
 </table>

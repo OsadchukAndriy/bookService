@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.osadchuk.bookService.models.Book;
-import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.security.PersonDetails;
 import ua.osadchuk.bookService.services.PeopleService;
 
@@ -16,10 +15,15 @@ import ua.osadchuk.bookService.services.PeopleService;
 public class PeopleController {
 
     private final PeopleService peopleService;
+    private final AdminController adminController;
+
+    private final BlockController blockController;
 
     @Autowired
-    public PeopleController(PeopleService peopleService) {
+    public PeopleController(PeopleService peopleService, AdminController adminController, BlockController blockController) {
         this.peopleService = peopleService;
+        this.adminController = adminController;
+        this.blockController = blockController;
     }
 
     @GetMapping("/")
@@ -30,10 +34,10 @@ public class PeopleController {
         int a = personDetails.getPerson().getId();
 
         if (personDetails.getPerson().getRole().equals("ROLE_ADMIN")) {
-            return admin(model);
+            return adminController.admin(model);
         }
         if (personDetails.getPerson().isBlock() == true) {
-            return block(model);
+            return blockController.block();
         }
 
         return show(book, a, model);
@@ -46,40 +50,5 @@ public class PeopleController {
         model.addAttribute("books", peopleService.getBooksByPersonId(id));
         model.addAttribute("book");
         return "people/show";
-    }
-
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        model.addAttribute("people", peopleService.findAll());
-        return "admin";
-    }
-
-    @PatchMapping("/admin/{id}")
-    public String updateRole(@PathVariable("id") int id, Model model) {
-        Person person = peopleService.findOne(id);
-        if (person.getRole().equals("ROLE_USER")) {
-            person.setRole("ROLE_ADMIN");
-        } else if (person.getRole().equals("ROLE_ADMIN")) {
-            person.setRole("ROLE_USER");
-        }
-        peopleService.save(person);
-        return admin(model);
-    }
-
-    @GetMapping("/block")
-    public String block(Model model) {
-        return "block";
-    }
-
-    @PatchMapping("/block/{id}")
-    public String blockRole(@PathVariable("id") int id, Model model) {
-        Person person = peopleService.findOne(id);
-        if(person.isBlock() == true){
-            person.setBlock(false);
-        } else if(person.isBlock() == false){
-            person.setBlock(true);
-        }
-        peopleService.save(person);
-        return admin(model);
     }
 }
