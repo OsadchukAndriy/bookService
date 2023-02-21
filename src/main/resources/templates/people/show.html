@@ -22,13 +22,11 @@
     <b>YOUR BOOKS:</b>
     <br/>
     <br/>
-    <table th:each="book : ${books}">
+    <table th:each="book, iterStat: ${books}">
 
-        <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()} + '  ' ">book</tr>
-        &nbsp;
+        <tr th:text="${(iterStat.index + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()} + '  ' ">book</tr>
         <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
             <input type="submit" value="DELETE"/>
-            <br/>
         </form>
         <br>
     </table>

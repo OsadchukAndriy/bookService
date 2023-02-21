@@ -4,46 +4,44 @@
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
+<!--<link href="css/main.css" rel="stylesheet" type="text/css">-->
+
 <body>
+
 <br/>
 <b>ALL PERSON:</b>
 <br/>
 <br/>
 <hr/>
 <br/>
-<table th:each="person : ${people}">
+<div th:each="person, iterStat : ${people}">
 
-    <tr th:href="@{/people/{id}(id=${person.getId()})}"
-        th:text="${person.getName()}">user
-    </tr>
-    &nbsp;
-    <div th:if="${person.getRole().equals('ROLE_USER')}">
-        <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+    <div style="display: inline-block" th:href="@{/people/{id}(id=${person.getId()})}"
+        th:text="${(iterStat.index + 1) + '. ' + person.getName()}">user
+    </div>
+    <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_USER')}">
+        <form style="display: inline-block"  th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
             <input type="submit" value="MAKE ADMIN" style="color: darkgreen"/>
         </form>
     </div>
-    <div th:if="${person.getRole().equals('ROLE_ADMIN')}">
-        <form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+    <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_ADMIN')}">
+        <form style="display: inline-block" th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
             <input type="submit" value="MAKE USER" style="color: darkgreen"/>
         </form>
     </div>
-    &nbsp;
-    <div th:if="${person.isBlock() == true}">
-        <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
+    <div style="display: inline-block" th:if="${person.isBlock() == true}">
+        <form style="display: inline-block" th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
             <input type="submit" value="UNBLOCK USER" style="color: darkred"/>
-            <br/>
         </form>
     </div>
 
-    <div th:if="${person.isBlock() == false}">
+    <div style="display: inline-block" th:if="${person.isBlock() == false}">
 
-        <form th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
-            <input type="submit" value="BLOCK USER" style="color: darkred"/>
-            <br/>
-        </form>
+    <form style="display: inline-block" th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
+        <input type="submit" value="BLOCK USER" style="color: darkred"/>
+    </form>
     </div>
-    <br>
-</table>
+</div>
 
 <br/>
 <hr/>
