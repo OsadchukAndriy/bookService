@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -16,25 +19,26 @@
     });
 </script>
 <body>
-<li class="login">
+<div class="login" >
     <span th:text="#{login.changeLang}" ></span>
     <select id="locales">
         <option value=""></option>
         <option value="en">English</option>
         <option value="ua">Уераїнська</option>
     </select>
-</li>
-<h2 th:text="#{login.welcome}"></h2>
+</div>
+<div class="h2">
+<h2 class="h" th:text="#{login.welcome}" ></h2>
 
-<form name="f" method="post" action="/process_login">
+<form class="form" name="f" method="post" action="/process_login">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-    <label for="username" th:text="#{login.enterName}" >Enter username: </label>
-    <input type="text" name="username" id="username"/>
+    <label  class="h3" for="username" th:text="#{login.enterName}" >Enter username: </label>
+    <input class="h4" type="text" name="username" id="username"/>
     <br/>
     <br/>
-    <label for="password" th:text="#{login.enterPassword}" >Enter password: </label>
-    <input type="password" name="password" id="password"/>
+    <label class="h5" for="password" th:text="#{login.enterPassword}" >Enter password: </label>
+    <input class="h6" type="password" name="password" id="password"/>
     <br/>
     <br/>
     <input type="submit" value="LOGIN" th:value="#{login.login}"/>
@@ -46,9 +50,12 @@
     </div>
 </form>
 
-<form th:method="GET" th:action="@{/auth/registration}">
+<form class="h" th:method="GET" th:action="@{/auth/registration}">
     <input type="submit" value="REGISTRATION" th:value="#{login.registration}"/>
 </form>
 
+</div>
+
 </body>
+
 </html>

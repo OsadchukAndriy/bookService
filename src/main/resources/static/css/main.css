@@ -1,0 +1,87 @@
+.h2 {
+    position: center;
+    width: 960px;
+    height: 620px;
+    left: 480px;
+    top: 230px;
+
+    background: linear-gradient(135deg, #BF8E68 0%, #F0E5DD 100%);
+    border-radius: 30px;
+}
+
+.h {
+    position: absolute;
+    width: 428px;
+    height: 83px;
+    left: 266px;
+    top: 72px;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 83px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: 0.2em;
+
+    color: #2A4A63;
+}
+
+.h3 {
+    position: absolute;
+    width: 276px;
+    height: 41px;
+    left: 156px;
+    top: 215px;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 41px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+}
+.h4{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 280px;
+    height: 40px;
+    left: 524px;
+    top: 216px;
+
+    background: #F0E5DD;
+    border: 1px solid #2A4A63;
+    border-radius: 30px;
+}
+.h5{position: absolute;
+    width: 268px;
+    height: 41px;
+    left: 156px;
+    top: 296px;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 41px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #2A4A63;
+}
+.h6{
+    box-sizing: border-box;
+    position: absolute;
+    width: 280px;
+    height: 40px;
+    left: 524px;
+    top: 297px;
+    background: #F0E5DD;
+    border: 1px solid #2A4A63;
+    border-radius: 30px;
+}
