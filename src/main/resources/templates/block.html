@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <title>Block Title</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
 <body>
-
+<div>
+    <span th:text="#{login.changeLang}"></span>
+    <select id="locales">
+        <option value=""></option>
+        <option value="en">English</option>
+        <option value="ua">Українська</option>
+    </select>
+</div>
 <br/>
 
-<h2 STYLE="color: darkred">Your page is blocked! Goodbye)</h2>
+<h2 STYLE="color: darkred" th:text="#{block.message}"></h2>
 
 <br/>
 <hr/>
 <br/>
 
 <form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="LOGOUT">
+    <input type="submit" value="LOGOUT" th:value="#{logout}">
 </form>
 
 </body>

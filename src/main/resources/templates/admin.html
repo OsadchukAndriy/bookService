@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
-<!--<link href="css/main.css" rel="stylesheet" type="text/css">-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
 
 <body>
 
+<div>
+    <span th:text="#{login.changeLang}"></span>
+    <select id="locales">
+        <option value=""></option>
+        <option value="en">English</option>
+        <option value="ua">Українська</option>
+    </select>
+</div>
+
 <br/>
-<b>ALL PERSON:</b>
+<b th:text="#{admin.title}"></b>
 <br/>
 <br/>
 <hr/>
@@ -17,29 +37,29 @@
 <div th:each="person, iterStat : ${people}">
 
     <div style="display: inline-block" th:href="@{/people/{id}(id=${person.getId()})}"
-        th:text="${(iterStat.index + 1) + '. ' + person.getName()}">user
+         th:text="${(iterStat.index + 1) + '. ' + person.getName()}">user
     </div>
     <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_USER')}">
-        <form style="display: inline-block"  th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
-            <input type="submit" value="MAKE ADMIN" style="color: darkgreen"/>
+        <form style="display: inline-block" th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
+            <input type="submit" th:value="#{admin.makeAdmin}" style="color: darkgreen"/>
         </form>
     </div>
     <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_ADMIN')}">
         <form style="display: inline-block" th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}">
-            <input type="submit" value="MAKE USER" style="color: darkgreen"/>
+            <input type="submit" th:value="#{admin.makeUser}" style="color: darkgreen"/>
         </form>
     </div>
     <div style="display: inline-block" th:if="${person.isBlock() == true}">
         <form style="display: inline-block" th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
-            <input type="submit" value="UNBLOCK USER" style="color: darkred"/>
+            <input type="submit" th:value="#{admin.unblockUser}" style="color: darkred"/>
         </form>
     </div>
 
     <div style="display: inline-block" th:if="${person.isBlock() == false}">
 
-    <form style="display: inline-block" th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
-        <input type="submit" value="BLOCK USER" style="color: darkred"/>
-    </form>
+        <form style="display: inline-block" th:method="PATCH" th:action="@{/block/{id}(id=${person.getId()})}">
+            <input type="submit" th:value="#{admin.blockUser}" style="color: darkred"/>
+        </form>
     </div>
 </div>
 
@@ -48,7 +68,7 @@
 <br/>
 
 <form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="LOGOUT">
+    <input type="submit" th:value="#{logout}">
 </form>
 
 </body>

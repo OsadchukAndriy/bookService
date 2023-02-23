@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Registration Page</title>
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 <body>
 
-<h2>REGISTRATION</h2>
+<div class="login">
+    <span th:text="#{login.changeLang}"></span>
+    <select id="locales">
+        <option value=""></option>
+        <option value="en">English</option>
+        <option value="ua">Українська</option>
+    </select>
+</div>
+
+<h2 th:text="#{registration.registration}"></h2>
 
 <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
-    <label for="user">Enter name: </label>
+
+    <label for="user" th:text="#{login.enterName}">Enter username: </label>
     <input type="text" th:field="*{name}" id="user"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     <br/>
     <br/>
-    <label for="password">Enter password: </label>
+    <label for="password" th:text="#{login.enterPassword}">Enter password: </label>
     <input type="text" th:field="*{password}" id="password"/>
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
     <br/>
     <br/>
-    <input type="submit" value="SING UP!">
+    <input type="submit" value="SING UP!" th:value="#{registration.sigUp}">
     <br/>
     <br/>
+
 </form>
 
 <form th:method="GET" th:action="@{/auth/login}">
-    <input type="submit" value="RETURN"/>
+    <input type="submit" value="RETURN" th:value="#{return}"/>
 </form>
 
 </body>
