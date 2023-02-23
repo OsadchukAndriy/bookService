@@ -37,6 +37,6 @@ public class BlockController {
             person.setBlock(true);
         }
         peopleService.save(person);
-        return adminController.admin(model);
+        return adminController.admin(model, id);
     }
 }

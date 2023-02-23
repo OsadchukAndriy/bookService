@@ -50,15 +50,26 @@ public class BookController {
         return "books/new";
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("book", booksService.findOne(id));
+//        booksService.save(booksService.findOne(id));
+        return "books/edit";
+    }
+
     @PostMapping("/{id}")
-    public String create(@PathVariable("id") int id, @ModelAttribute("book") @Valid Book book,
-                         BindingResult bindingResult) {
+    public String create(Model model, @PathVariable("id") int id, @ModelAttribute("book") @Valid Book book,
+                         BindingResult bindingResult, @ModelAttribute("person") @Valid Person person) {
         if (bindingResult.hasErrors()) {
             return "books/new";
         }
         book.setOwner(peopleService.findOne(id));
         book.setId(0);
         booksService.save(book);
+
+        if (peopleService.findOne(id).getRole().equals("ROLE_ADMIN")) {
+            return "redirect:/people/" + id;
+        }
         return "redirect:/";
     }
 
@@ -67,5 +78,20 @@ public class BookController {
         int i = booksService.getBookOwner(id).getId();
         booksService.delete(id);
         return "redirect:/people/" + i;
+    }
+
+    @PutMapping("/{id}")
+    public String update(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult,
+                         @PathVariable("id") int id, Model model, @ModelAttribute("person") @Valid Person person) {
+        if (bindingResult.hasErrors())
+            return "books/edit";
+
+        booksService.update(id, book);
+
+        model.addAttribute("person", booksService.getBookOwner(id));
+        model.addAttribute("books", booksService.findAll());
+        model.addAttribute("book");
+
+        return "redirect:/people/" + booksService.getBookOwner(id).getId();
     }
 }
