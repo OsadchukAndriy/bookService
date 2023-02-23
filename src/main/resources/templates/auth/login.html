@@ -18,7 +18,7 @@
         });
     });
 </script>
-<body>
+<body class="loginBackground">
 
 <div>
     <span th:text="#{login.changeLang}"></span>
@@ -29,18 +29,18 @@
     </select>
 </div>
 
-<div>
-    <h2 class="login" th:text="#{login.welcome}"></h2>
+<div class="loginForm">
+    <h2 class="loginWelcome" th:text="#{login.welcome}"></h2>
 
     <form method="post" action="/process_login">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-        <label for="username" th:text="#{login.enterName}"></label>
-        <input type="text" name="username" id="username"/>
+        <label class="loginEnterUsername" for="username" th:text="#{login.enterName}"></label>
+        <input class="loginEnterUsernameForm" type="text" name="username" id="username"/>
         <br/>
         <br/>
-        <label for="password" th:text="#{login.enterPassword}"></label>
-        <input type="password" name="password" id="password"/>
+        <label class="loginEnterPassword" for="password" th:text="#{login.enterPassword}"></label>
+        <input class="loginEnterPasswordForm" type="password" name="password" id="password"/>
         <br/>
         <br/>
         <div>
