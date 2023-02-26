@@ -1,75 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
+    <link th:href="@{/css/show.css}" rel="stylesheet"/>
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 <body>
 
-<h3>BOOK SERVICE:</h3>
+<section class="showSection">
 
-<p th:text="${person.getName()}">VALUE</p>
+    <div class="wrapper">
 
+        <div class="showForm">
 
-<div th:if="${books.isEmpty()}">
-    <p>The man hasn't picked up any books yet</p>
-    <hr/>
-</div>
+            <h1 class="showTitle" th:text="#{show.bookService} + ' ' + ${person.getName()}"></h1>
+            <line class="showLine"></line>
 
-<div th:if="${!books.isEmpty()}">
-    <hr/>
-    <br/>
-    <b>YOUR BOOKS:</b>
-    <br/>
-    <br/>
-    <table th:each="book, iterStat: ${books}">
+            <div th:if="${books.isEmpty()}">
+                <h3 class="showIfNull" th:text="#{show.ifNull}"></h3>
+            </div>
 
-        <tr th:text="${(iterStat.index + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()} + '  ' ">book</tr>
-        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
-            <input type="submit" value="DELETE"/>
-        </form>
-        <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
-            <input type="submit" value="EDIT"/>
-        </form>
-        <br>
-    </table>
-    <hr/>
-    <br/>
-</div>
+            <div th:if="${!books.isEmpty()}">
+                <h1 class="showYourBooks" th:text="#{show.yourBooks}"></h1>
 
-<h3>CREATE A NEW BOOK:</h3>
+                <div th:each="book, iterStat: ${books}">
 
-<form th:method="POST" th:action="@{/books/{id}(id=${person.getId()})}" th:object="${book}">
-    <label for="name">Enter the title: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
-    <br/>
-    <br/>
-    <label for="yearOfRealise">Enter release year: </label>
-    <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-    <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
-        Error
+                    <div style="display: inline-block" class="showBookInfo"
+                         th:text="${(iterStat.index + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">
+                    </div>
+                    <div style="display: inline-block">
+                        <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+                            <input class="showEditBook" type="submit" th:value="#{show.edit}"/>
+                        </form>
+                    </div>
+                    <div style="display: inline-block">
+                        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+                            <input class="showDelete" type="submit" th:value="#{show.delete}"/>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <line class="showLine"></line>
+
+            <h2 class="showTitle" th:text="#{show.createNew}"></h2>
+
+            <form th:method="POST" th:action="@{/books/{id}(id=${person.getId()})}" th:object="${book}">
+                <label class="showEditBookName" for="name" th:text="#{bookName}"></label>
+                <input class="showEditBookNameForm" type="text" th:field="*{name}" id="name"/>
+                <!--                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>-->
+                <br/>
+                <label class="showEditYear" for="yearOfRealise" th:text="#{year}"></label>
+                <input class="showEditYearForm" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                <!--            <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">-->
+                <!--                yearOfRealise-->
+                <!--                Error-->
+                <!--            </div>-->
+                <br/>
+                <label class="showEditAuthor" for="author" th:text="#{author}"></label>
+                <input class="showEditAuthorForm" type="text" th:field="*{author}" id="author"/>
+                <!--            <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>-->
+
+                <input class="create" type="submit" th:value="#{show.create}"/>
+            </form>
+
+            <line class="showLine"></line>
+
+            <form th:method="POST" th:action="@{/logout}">
+                <input class="showButtonLogout"  type="submit" th:value="#{logout}"/>
+            </form>
+
+        </div>
     </div>
-    <br/>
-    <br/>
-    <col>
-    <label for="author">Enter author: </label>
-    <input type="text" th:field="*{author}" id="author"/>
-    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
-    <br/>
-    <br/>
-    <input type="submit" value="CREATE!"/>
-    <br/>
-    <br/>
-    <hr/>
-    <br/>
-</form>
 
-</body>
+    <!--            <div>-->
+    <!--                <span th:text="#{login.changeLang}"></span>-->
+    <!--                <select id="locales">-->
+    <!--                    <option value=""></option>-->
+    <!--                    <option value="en">English</option>-->
+    <!--                    <option value="ua">Українська</option>-->
+    <!--                </select>-->
+    <!--            </div>-->
 
-<form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="LOGOUT">
-</form>
-
+    </div>
+</section>
 </body>
 </html>

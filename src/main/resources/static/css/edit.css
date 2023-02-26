@@ -1,0 +1,146 @@
+html,
+body {
+    height: 100%;
+    background-image: url(images/loginBackground.jpg);
+}
+
+.wrapper {
+    position: relative;
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.editSection {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(27 29 31 / 50%);
+}
+
+.editForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 60px 130px 54px 130px;
+    width: 480px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: linear-gradient(135deg, rgba(191, 142, 104, 0.95) 0%, rgba(240, 229, 221, 0.95) 100%);
+    border: 0.86px solid #1E1E1E;
+    box-shadow: 0px 3.42px 3.42px rgba(0, 0, 0, 0.25);
+    border-radius: 25.6px;
+}
+
+.editTitle {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 70px;
+
+    text-align: center;
+    letter-spacing: 0.2em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.editBookName {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 34px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.editBookNameForm {
+    width: 265px;
+    height: 34px;
+    margin-bottom: 34px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.editYear {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.editYearForm {
+    width: 208.5px;
+    height: 34px;
+    margin-bottom: 34px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.editAuthor {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.editAuthorForm {
+    width: 287px;
+    height: 34px;
+    margin-bottom: 60px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.editUpdate {
+    margin: 0 auto;
+    display: block;
+    background: #BF8E68;
+    border: 0.86px solid #2A4A63;
+    border-radius: 25.6px;
+    padding: 10px 88px;
+
+    background: #BF8E68;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20.5px;
+    line-height: 27px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}

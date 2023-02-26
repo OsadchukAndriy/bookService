@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Update book</title>
+    <meta charset="UTF-8">
+    <title>Update book</title>
+    <link th:href="@{/css/edit.css}" rel="stylesheet"/>
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 <body>
 
-<form th:method="PUT" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
-  <label for="name">Введите название: </label>
-  <input type="text" th:field="*{name}" id="name"/>
-  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
-  <br/>
-  <label for="yearOfRealise">Введите год выхода: </label>
-  <input type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-  <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">yearOfRealise
-    Error
-  </div>
-  <br/>
-  <label for="author">Введите автора: </label>
-  <input type="text" th:field="*{author}" id="author"/>
-  <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
-  <br/>
-  <input type="submit" value="Обновить!"/>
-</form>
+<section class="editSection">
 
+    <div class="wrapper">
+
+        <div class="editForm">
+            <h1 class="editTitle" th:text="#{edit.title}"></h1>
+
+            <form th:method="PUT" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+                <label class="editBookName" for="name" th:text="#{bookName}"></label>
+                <input class="editBookNameForm" type="text" th:field="*{name}" id="name"/>
+                <!--                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>-->
+                <label class="editYear" for="yearOfRealise" th:text="#{year}"></label>
+                <input class="editYearForm" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                <!--                <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">-->
+                <!--                    yearOfRealise-->
+                <!--                    Error-->
+                <!--                </div>-->
+                <label class="editAuthor" for="author" th:text="#{author}"></label>
+                <input class="editAuthorForm" type="text" th:field="*{author}" id="author"/>
+                <!--                <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>-->
+                <!--                <br/>-->
+                <button class="editUpdate" type="submit" th:value="#{edit.update}">UPDATE!</button>
+            </form>
+
+            <!--<div class="login">-->
+            <!--    <span th:text="#{login.changeLang}"></span>-->
+            <!--    <select id="locales">-->
+            <!--        <option value=""></option>-->
+            <!--        <option value="en">English</option>-->
+            <!--        <option value="ua">Українська</option>-->
+            <!--    </select>-->
+            <!--</div>-->
+
+        </div>
+
+    </div>
+</section>
 </body>
 </html>

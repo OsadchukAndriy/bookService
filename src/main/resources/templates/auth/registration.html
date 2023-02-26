@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <title>Registration Page</title>
+    <link th:href="@{/css/registration.css}" rel="stylesheet"/>
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -19,39 +21,46 @@
 </script>
 
 <body>
+<section class="registrationSection">
 
-<div class="login">
-    <span th:text="#{login.changeLang}"></span>
-    <select id="locales">
-        <option value=""></option>
-        <option value="en">English</option>
-        <option value="ua">Українська</option>
-    </select>
-</div>
+    <div class="wrapper">
 
-<h2 th:text="#{registration.registration}"></h2>
+        <div class="registrationForm">
 
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+            <h1 class="registrationRegistration" th:text="#{registration.registration}"></h1>
 
-    <label for="user" th:text="#{login.enterName}">Enter username: </label>
-    <input type="text" th:field="*{name}" id="user"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-    <br/>
-    <br/>
-    <label for="password" th:text="#{login.enterPassword}">Enter password: </label>
-    <input type="text" th:field="*{password}" id="password"/>
-    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
-    <br/>
-    <br/>
-    <input type="submit" value="SING UP!" th:value="#{registration.sigUp}">
-    <br/>
-    <br/>
+            <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
 
-</form>
+                <label class="registrationEnterUsername" for="user" th:text="#{login.enterName}">Enter
+                    username: </label>
+                <input class="registrationEnterUsernameForm" type="text" th:field="*{name}" id="user"/>
+                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                <label class="registrationEnterPassword" for="password" th:text="#{login.enterPassword}">Enter
+                    password: </label>
+                <input class="registrationEnterPasswordForm" type="text" th:field="*{password}" id="password"/>
+                <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error
+                </div>
 
-<form th:method="GET" th:action="@{/auth/login}">
-    <input type="submit" value="RETURN" th:value="#{return}"/>
-</form>
+                <button class="singUpButton" type="submit" th:value="#{registration.sigUp}">SING UP!</button>
 
+            </form>
+
+            <form th:method="GET" th:action="@{/auth/login}">
+                <button class="returnButton" type="submit" th:value="#{return}"/>
+                RETURN
+                </button>
+            </form>
+
+            <!--<div class="login">-->
+            <!--    <span th:text="#{login.changeLang}"></span>-->
+            <!--    <select id="locales">-->
+            <!--        <option value=""></option>-->
+            <!--        <option value="en">English</option>-->
+            <!--        <option value="ua">Українська</option>-->
+            <!--    </select>-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>
 </body>
 </html>

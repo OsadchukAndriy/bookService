@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Block Title</title>
+    <link th:href="@{/css/block.css}" rel="stylesheet"/>
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
 </head>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -15,26 +19,34 @@
         });
     });
 </script>
+
 <body>
-<div>
-    <span th:text="#{login.changeLang}"></span>
-    <select id="locales">
-        <option value=""></option>
-        <option value="en">English</option>
-        <option value="ua">Українська</option>
-    </select>
-</div>
-<br/>
 
-<h2 STYLE="color: darkred" th:text="#{block.message}"></h2>
+<section class="blockSection">
 
-<br/>
-<hr/>
-<br/>
+    <div class="wrapper">
 
-<form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="LOGOUT" th:value="#{logout}">
-</form>
+        <div class="blockForm">
 
+            <h2 class="blockMessage" th:text="#{block.message}"></h2>
+
+            <form th:method="POST" th:action="@{/logout}">
+                <button class="logoutButton" type="submit" th:value="#{logout}">LOGOUT
+                </button>
+            </form>
+
+        </div>
+
+        <!--<div>-->
+        <!--    <span th:text="#{login.changeLang}"></span>-->
+        <!--    <select id="locales">-->
+        <!--        <option value=""></option>-->
+        <!--        <option value="en">English</option>-->
+        <!--        <option value="ua">Українська</option>-->
+        <!--    </select>-->
+        <!--</div>-->
+
+    </div>
+</section>
 </body>
 </html>

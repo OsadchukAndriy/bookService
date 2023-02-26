@@ -1,0 +1,258 @@
+html,
+body {
+    height: 100%;
+    background-image: url(images/wallpaperbetter.jpg);
+}
+
+.wrapper {
+    position: relative;
+    padding: 60px 130px;
+    width: 940px;
+    margin: 0 auto;
+}
+
+.showSection {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.showForm {
+    padding: 60px 130px 54px 130px;
+    width: 680px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: linear-gradient(135deg, rgba(191, 142, 104, 0.95) 0%, rgba(240, 229, 221, 0.95) 100%);
+    border: 0.86px solid #1E1E1E;
+    box-shadow: 0px 3.42px 3.42px rgba(0, 0, 0, 0.25);
+    border-radius: 25.6px;
+}
+
+.showTitle {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 34px;
+
+    text-align: left;
+    letter-spacing: 0.2em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showLine {
+    width: 512.5px;
+    height: 0px;
+    left: 51.4px;
+    top: 86.4px;
+    margin-bottom: 40px;
+
+    border: 1.7px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+.showIfNull {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 34px;
+
+    text-align: left;
+    letter-spacing: 0.2em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showYourBooks {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 34px;
+
+    text-align: left;
+    letter-spacing: 0.2em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showBookInfo {
+    font-weight: 400;
+    font-size: 20.5px;
+    line-height: 27px;
+    margin-bottom: 14px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.1);
+}
+
+.showEditBook {
+    margin: 0 auto;
+    display: block;
+    background: #BF8E68;
+    border: 0.86px solid #2A4A63;
+    border-radius: 12.8px;
+    padding: 2px 28px;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.6px;
+    line-height: 18px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #287233;
+    mix-blend-mode: normal;
+    text-shadow: 0 3.41667px 3.41667px rgba(0, 0, 0, 0.1);
+}
+
+.showDelete {
+    margin: 0 auto;
+    display: block;
+    background: #BF8E68;
+    border: 0.86px solid #2A4A63;
+    border-radius: 12.8px;
+    padding: 2px 28px;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.6px;
+    line-height: 18px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #790609;
+    mix-blend-mode: normal;
+    text-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.1);
+}
+
+.showEditBookName {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 34px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showEditBookNameForm {
+    width: 301px;
+    height: 34px;
+    margin-bottom: 34px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.showEditYear {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showEditYearForm {
+    width: 244.5px;
+    height: 34px;
+    margin-bottom: 34px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.showEditAuthor {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+
+    color: #2A4A63;
+
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showEditAuthorForm {
+    width: 323px;
+    height: 34px;
+    margin-bottom: 20px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+}
+
+.create {
+    margin-bottom: 20px;
+    display: block;
+    background: #BF8E68;
+    border: 0.86px solid #2A4A63;
+    border-radius: 25.6px;
+    padding: 10px 88px;
+
+    background: #BF8E68;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20.5px;
+    line-height: 27px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
+
+.showButtonLogout {
+    margin: 0 auto;
+    display: block;
+    background: #BF8E68;
+    border: 0.86px solid #2A4A63;
+    border-radius: 25.6px;
+    padding: 10px 86.8px;
+
+
+    background: #BF8E68;
+
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20.5px;
+    line-height: 27px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0px 3.4px 3.4px rgba(0, 0, 0, 0.15);
+}
