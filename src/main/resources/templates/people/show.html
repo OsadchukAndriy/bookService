@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
-    <link th:href="@{/css/show.css}" rel="stylesheet"/>
-    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -21,68 +21,80 @@
 
 <body>
 
-<section class="showSection">
+<section class="section">
 
-    <div class="wrapper">
+    <div class="wrapperWindow">
 
-        <div class="showForm">
+        <div class="formWindow">
 
-            <h1 class="showTitle" th:text="#{show.bookService} + ' ' + ${person.getName()}"></h1>
-            <line class="showLine"></line>
+            <h1 class="midlTextLeft" th:text="#{show.bookService} + ' ' + ${person.getName()}"></h1>
+            <line class="line"></line>
 
             <div th:if="${books.isEmpty()}">
-                <h3 class="showIfNull" th:text="#{show.ifNull}"></h3>
+                <h3 class="midlTextLeft" th:text="#{show.ifNull}"></h3>
             </div>
 
             <div th:if="${!books.isEmpty()}">
-                <h1 class="showYourBooks" th:text="#{show.yourBooks}"></h1>
+                <h1 class="midlTextLeft" th:text="#{show.yourBooks}"></h1>
 
                 <div th:each="book, iterStat: ${books}">
 
-                    <div style="display: inline-block" class="showBookInfo"
+                    <div style="display: inline-block" class="smallText"
                          th:text="${(iterStat.index + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">
                     </div>
                     <div style="display: inline-block">
                         <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
-                            <input class="showEditBook" type="submit" th:value="#{show.edit}"/>
+                            <input class="smallButtonGreen" type="submit" th:value="#{show.edit}"/>
                         </form>
                     </div>
                     <div style="display: inline-block">
                         <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
-                            <input class="showDelete" type="submit" th:value="#{show.delete}"/>
+                            <input class="smallButtonRed" type="submit" th:value="#{show.delete}"/>
                         </form>
                     </div>
 
                 </div>
             </div>
 
-            <line class="showLine"></line>
+            <line class="line"></line>
 
-            <h2 class="showTitle" th:text="#{show.createNew}"></h2>
+            <h2 class="midlTextLeft" th:text="#{show.createNew}"></h2>
 
             <form th:method="POST" th:action="@{/books/{id}(id=${person.getId()})}" th:object="${book}">
-                <label class="showEditBookName" for="name" th:text="#{bookName}"></label>
-                <input class="showEditBookNameForm" type="text" th:field="*{name}" id="name"/>
-                <!--                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>-->
-                <br/>
-                <label class="showEditYear" for="yearOfRealise" th:text="#{year}"></label>
-                <input class="showEditYearForm" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-                <!--            <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">-->
-                <!--                yearOfRealise-->
-                <!--                Error-->
-                <!--            </div>-->
-                <br/>
-                <label class="showEditAuthor" for="author" th:text="#{author}"></label>
-                <input class="showEditAuthorForm" type="text" th:field="*{author}" id="author"/>
-                <!--            <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>-->
 
-                <input class="create" type="submit" th:value="#{show.create}"/>
+                <div class="col-50">
+                    <label class="midlText" for="name" th:text="#{show.bookName}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{name}" id="name"/>
+                    <div class="warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="yearOfRealise" th:text="#{show.year}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                    <div class="warning" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">
+                        yearOfRealise Error
+                    </div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="author" th:text="#{show.author}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{author}" id="author"/>
+                    <div class="warning" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
+                </div>
+
+                <input class="leftButton" type="submit" th:value="#{show.create}"/>
             </form>
 
-            <line class="showLine"></line>
+            <line class="line"></line>
 
             <form th:method="POST" th:action="@{/logout}">
-                <input class="showButtonLogout"  type="submit" th:value="#{logout}"/>
+                <input class="bigButton" type="submit" th:value="#{logout}"/>
             </form>
 
         </div>

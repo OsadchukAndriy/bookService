@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-    <link th:href="@{/css/admin.css}" rel="stylesheet"/>
-    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -21,18 +21,18 @@
 
 <body>
 
-<section class="adminSection">
+<section class="section">
 
-    <div class="wrapper">
+    <div class="wrapperWindow">
 
-        <div class="adminForm">
+        <div class="formWindow">
 
-            <h2 class="adminTitle" th:text="#{admin.title} + ' ' + ${person.getName()}"></h2>
-            <line class="adminLine"></line>
+            <h2 class="midlTextLeft" th:text="#{admin.title} + ' ' + ${person.getName()}"></h2>
+            <line class="line"></line>
 
             <div th:each="person, iterStat : ${people}">
 
-                <div class="adminPersonInfo" style="display: inline-block"
+                <div class="smallText" style="display: inline-block"
                      th:href="@{/people/{id}(id=${person.getId()})}"
                      th:text="${(iterStat.index + 1) + '. ' + person.getName()}">user
                 </div>
@@ -40,51 +40,50 @@
                 <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_USER')}">
                     <form style="display: inline-block" th:method="PATCH"
                           th:action="@{/admin/{id}(id=${person.getId()})}">
-                        <button class="adminMaceAdmin" type="submit" th:value="#{admin.makeAdmin}">MAKE ADMIN
-                        </button>
+                        <input class="smallButtonGreen" type="submit" th:value="#{admin.makeAdmin}"/>
                     </form>
                 </div>
                 <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_ADMIN')}">
                     <form style="display: inline-block" th:method="PATCH"
                           th:action="@{/admin/{id}(id=${person.getId()})}">
-                        <button class="adminMaceAdmin" type="submit" th:value="#{admin.makeUser}">MAKE USER</button>
+                        <input class="smallButtonGreen" type="submit" th:value="#{admin.makeUser}"/>
                     </form>
                 </div>
 
                 <div style="display: inline-block" th:if="${person.isBlock() == true}">
                     <form style="display: inline-block" th:method="PATCH"
                           th:action="@{/block/{id}(id=${person.getId()})}">
-                        <button class="adminBlockUser" type="submit" th:value="#{admin.unblockUser}">UNBLOCK USER
-                        </button>
+                        <input class="smallButtonRed" type="submit" th:value="#{admin.unblockUser}"/>
                     </form>
                 </div>
                 <div style="display: inline-block" th:if="${person.isBlock() == false}">
                     <form style="display: inline-block" th:method="PATCH"
                           th:action="@{/block/{id}(id=${person.getId()})}">
-                        <button class="adminBlockUser" type="submit" th:value="#{admin.blockUser}">BLOCK USER
-                        </button>
+                        <input class="smallButtonRed" type="submit" th:value="#{admin.blockUser}"/>
                     </form>
                 </div>
             </div>
 
+            <line class="line"></line>
+
             <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
-                <input class="adminMyBooks" type="submit" th:value="#{admin.toBook}">
+                <input class="bigButton" type="submit" th:value="#{admin.toBook}">
             </form>
 
             <form th:action="@{/logout}" th:method="POST">
-                <input class="adminButtonLogout" type="submit" th:value="#{logout}">
+                <input class="bigButton" type="submit" th:value="#{logout}">
             </form>
 
         </div>
 
-<!--        <div>-->
-<!--            <span th:text="#{login.changeLang}"></span>-->
-<!--            <select id="locales">-->
-<!--                <option value=""></option>-->
-<!--                <option value="en">English</option>-->
-<!--                <option value="ua">Українська</option>-->
-<!--            </select>-->
-<!--        </div>-->
+        <!--        <div>-->
+        <!--            <span th:text="#{login.changeLang}"></span>-->
+        <!--            <select id="locales">-->
+        <!--                <option value=""></option>-->
+        <!--                <option value="en">English</option>-->
+        <!--                <option value="ua">Українська</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
 
     </div>
 </section>

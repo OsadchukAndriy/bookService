@@ -42,9 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(
-                "/css/login.css",
-                "/css/registration.css",
                 "/css/reset.css",
+                "/css/main.css",
                 "/css/images/loginBackground.jpg"
         );
     }

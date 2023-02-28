@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
-    <link th:href="@{/css/login.css}" rel="stylesheet"/>
-    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -22,44 +22,50 @@
 
 <body>
 
-<section class="loginSection">
+<section class="section">
 
     <div class="wrapper">
 
-        <div class="loginForm">
-            <h1 class="loginWelcome" th:text="#{login.welcome}"></h1>
+        <div class="form">
+            <h1 class="bigText" th:text="#{login.welcome}"></h1>
 
             <form method="post" action="/process_login">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-                <label class="loginEnterUsername" for="username" th:text="#{login.enterName}"></label>
-                <input class="loginEnterUsernameForm" type="text" name="username" id="username"/>
-                <label class="loginEnterPassword" for="password" th:text="#{login.enterPassword}"></label>
-                <input class="loginEnterPasswordForm" type="password" name="password" id="password"/>
-
-                <button class="loginButtonForm" type="submit" th:value="#{login.login}">LOGIN
-                </button>
-
-                <div th:if="${param.error}" style="color: red" th:text="#{login.wrong}">
+                <div class="col-50">
+                    <label class="midlText" for="username" th:text="#{login.enterName}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" name="username" id="username"/>
                 </div>
 
+                <div class="col-50">
+                    <label class="midlText" for="password" th:text="#{login.enterPassword}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="password" name="password" id="password"/>
+                </div>
+
+                <div class="warning" th:if="${param.error}" th:text="#{login.wrong}">
+                </div>
+
+                <input class="bigButton" type="submit" th:value="#{login.login}"/>
             </form>
 
             <form th:method="GET" th:action="@{/auth/registration}">
-                <button class="loginButtonRegistrationForm" type="submit" th:value="#{login.registration}">REGISTRATION
-                </button>
+                <input class="bigButton" type="submit" th:value="#{login.registration}"/>
             </form>
 
         </div>
 
-<!--        <div>-->
-<!--            <span class="changeLanguage" th:text="#{login.changeLang}"></span>-->
-<!--            <select class="changeLanguageForm" id="locales">-->
-<!--                <option class="changeLanguageMiniForm" value=""></option>-->
-<!--                <option class="changeLanguageMiniForm" value="en">English</option>-->
-<!--                <option class="changeLanguageMiniForm" value="ua">Українська</option>-->
-<!--            </select>-->
-<!--        </div>-->
+        <div class="changeLanguageForm">
+            <span class="changeLanguage" th:text="#{login.changeLang}"></span>
+            <select class="changeLanguageMiniForm" id="locales">
+                <option value=""></option>
+                <option value="en">English</option>
+                <option value="ua">Українська</option>
+            </select>
+        </div>
 
     </div>
 </section>

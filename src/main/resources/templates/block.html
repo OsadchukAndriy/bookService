@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Block Title</title>
-    <link th:href="@{/css/block.css}" rel="stylesheet"/>
-    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -22,17 +22,16 @@
 
 <body>
 
-<section class="blockSection">
+<section class="section">
 
     <div class="wrapper">
 
-        <div class="blockForm">
+        <div class="form">
 
-            <h2 class="blockMessage" th:text="#{block.message}"></h2>
+            <h2 class="bigWarning" th:text="#{block.message}"></h2>
 
             <form th:method="POST" th:action="@{/logout}">
-                <button class="logoutButton" type="submit" th:value="#{logout}">LOGOUT
-                </button>
+                <input class="bigButton" type="submit" th:value="#{logout}"/>
             </form>
 
         </div>

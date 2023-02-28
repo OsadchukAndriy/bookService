@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Update book</title>
-    <link th:href="@{/css/edit.css}" rel="stylesheet"/>
-    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -21,28 +21,44 @@
 
 <body>
 
-<section class="editSection">
+<section class="section">
 
     <div class="wrapper">
 
-        <div class="editForm">
-            <h1 class="editTitle" th:text="#{edit.title}"></h1>
+        <div class="form">
+            <h1 class="midlText" th:text="#{edit.title}"></h1>
 
             <form th:method="PUT" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
-                <label class="editBookName" for="name" th:text="#{bookName}"></label>
-                <input class="editBookNameForm" type="text" th:field="*{name}" id="name"/>
-                <!--                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>-->
-                <label class="editYear" for="yearOfRealise" th:text="#{year}"></label>
-                <input class="editYearForm" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
-                <!--                <div style="color:red" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">-->
-                <!--                    yearOfRealise-->
-                <!--                    Error-->
-                <!--                </div>-->
-                <label class="editAuthor" for="author" th:text="#{author}"></label>
-                <input class="editAuthorForm" type="text" th:field="*{author}" id="author"/>
-                <!--                <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>-->
-                <!--                <br/>-->
-                <button class="editUpdate" type="submit" th:value="#{edit.update}">UPDATE!</button>
+
+                <div class="col-50">
+                    <label class="midlText" for="name" th:text="#{edit.bookName}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{name}" id="name"/>
+                    <div class="warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="yearOfRealise" th:text="#{edit.year}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                    <div class="warning" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">
+                        yearOfRealise Error
+                    </div>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="author" th:text="#{edit.author}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" th:field="*{author}" id="author"/>
+                    <div class="warning" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error
+                    </div>
+                </div>
+
+                <input class="bigButton" type="submit" th:value="#{edit.update}"/>
+
             </form>
 
             <!--<div class="login">-->
