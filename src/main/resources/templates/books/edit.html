@@ -61,17 +61,11 @@
 
             </form>
 
-            <!--<div class="login">-->
-            <!--    <span th:text="#{login.changeLang}"></span>-->
-            <!--    <select id="locales">-->
-            <!--        <option value=""></option>-->
-            <!--        <option value="en">English</option>-->
-            <!--        <option value="ua">Українська</option>-->
-            <!--    </select>-->
-            <!--</div>-->
+            <form th:method="GET" th:action="@{/}">
+                <input class="bigButton" type="submit" th:value="#{return}"/>
+            </form>
 
         </div>
-
     </div>
 </section>
 </body>
