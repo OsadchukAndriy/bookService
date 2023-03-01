@@ -36,6 +36,6 @@ public class AdminController {
             person.setRole("ROLE_USER");
         }
         peopleService.save(person);
-        return admin(model, id);
+        return "redirect:/";
     }
 }

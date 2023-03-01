@@ -84,7 +84,7 @@ public class BookController {
     public String update(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult,
                          @PathVariable("id") int id, Model model, @ModelAttribute("person") @Valid Person person) {
         if (bindingResult.hasErrors())
-            return "/books/edit";
+            return "books/edit";
 
         booksService.update(id, book);
 
