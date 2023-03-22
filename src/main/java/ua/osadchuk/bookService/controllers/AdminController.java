@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.services.PeopleService;
 
-import javax.validation.Valid;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
