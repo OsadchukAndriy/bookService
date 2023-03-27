@@ -49,6 +49,5 @@ public class PeopleService {
         } else {
             return Collections.emptyList();
         }
-//        return peopleRepository.findById(id).map(Person::getBooks).orElse(null);
     }
 }
