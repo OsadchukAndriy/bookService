@@ -44,13 +44,12 @@
                 <ul class="pagination">
                     <li th:if="${currentPage > 1}">
                         <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage - 1})}" aria-label="Previous">
-<!--                            <span aria-hidden="true">&laquo;</span>-->
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                     <li th:unless="${currentPage >= totalPages}">
                         <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next">
-<!--                            <span aria-hidden="true">&raquo;</span>-->
+                            <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                 </ul>
