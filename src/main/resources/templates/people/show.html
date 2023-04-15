@@ -37,10 +37,29 @@
             <div th:if="${!books.isEmpty()}">
                 <h1 class="midlTextLeft" th:text="#{show.yourBooks}"></h1>
 
+
+
+
+
+                <ul class="pagination">
+                    <li th:if="${currentPage > 1}">
+                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage - 1})}" aria-label="Previous">
+<!--                            <span aria-hidden="true">&laquo;</span>-->
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li th:unless="${currentPage >= totalPages}">
+                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next">
+<!--                            <span aria-hidden="true">&raquo;</span>-->
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                </ul>
+
                 <div th:each="book, iterStat: ${books}">
 
                     <div style="display: inline-block" class="smallText"
-                         th:text="${(iterStat.index + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">
+                         th:text="${(iterStat.index + start + 1) + '. ' +book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRealise()}">
                     </div>
                     <div style="display: inline-block">
                         <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">

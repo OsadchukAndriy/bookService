@@ -10,6 +10,10 @@ import ua.osadchuk.bookService.models.Book;
 import ua.osadchuk.bookService.security.PersonDetails;
 import ua.osadchuk.bookService.services.PeopleService;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping()
 public class PeopleController {
@@ -40,15 +44,34 @@ public class PeopleController {
             return blockController.block();
         }
 
-        return show(book, a, model);
+        return show(book, a, 0, model);
     }
 
     @GetMapping("people/{id}")
     public String show(@ModelAttribute("book") Book book,
-                       @PathVariable("id") int id, Model model) {
+                       @PathVariable("id") int id,
+                       @RequestParam(value = "page", defaultValue = "1") int pageNumber,
+                       Model model) {
+
+        int booksPerPage = 10;
+
         model.addAttribute("person", peopleService.findOne(id));
-        model.addAttribute("books", peopleService.getBooksByPersonId(id));
-        model.addAttribute("book");
+
+        List<Book> books = peopleService.getBooksByPersonId(id);
+        int totalBooks = books.size();
+
+        int totalPages = (int) Math.ceil((double) totalBooks / booksPerPage);
+        int startBookIndex = (totalBooks - (pageNumber - 1) * booksPerPage) - 1;
+        int endBookIndex = Math.max(startBookIndex - booksPerPage, -1) + 1;
+
+        books = books.subList(endBookIndex, startBookIndex + 1); // get only the books for the current page
+
+        model.addAttribute("start", endBookIndex);
+        model.addAttribute("books", books);
+        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("book", new Book()); // assign a value to the "book" attribute
+
         return "people/show";
     }
 }
