@@ -37,23 +37,22 @@
             <div th:if="${!books.isEmpty()}">
                 <h1 class="midlTextLeft" th:text="#{show.yourBooks}"></h1>
 
-
-
-
-
                 <ul class="pagination">
-                    <li th:if="${currentPage > 1}">
-                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage - 1})}" aria-label="Previous">
-                            <span aria-hidden="true">&raquo;</span>
+                    <li style="display: inline-block" th:unless="${currentPage >= totalPages}">
+                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next"
+                           style="text-decoration: none">
+                            <span class="smallButtonGreen" aria-hidden="true"><<</span>
                         </a>
                     </li>
-                    <li th:unless="${currentPage >= totalPages}">
-                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next">
-                            <span aria-hidden="true">&laquo;</span>
+                    <li style="display: inline-block" th:if="${currentPage > 1}">
+                        <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage - 1})}"
+                           aria-label="Previous" style="text-decoration: none">
+                            <span class="smallButtonGreen" aria-hidden="true">>></span>
                         </a>
                     </li>
                 </ul>
 
+                <br/>
                 <div th:each="book, iterStat: ${books}">
 
                     <div style="display: inline-block" class="smallText"
