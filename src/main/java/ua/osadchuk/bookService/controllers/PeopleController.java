@@ -44,7 +44,7 @@ public class PeopleController {
             return blockController.block();
         }
 
-        return show(book, a, 0, model);
+        return show(book, a, 1, model);
     }
 
     @GetMapping("people/{id}")

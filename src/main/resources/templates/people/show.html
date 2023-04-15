@@ -51,7 +51,6 @@
                     <li th:unless="${currentPage >= totalPages}">
                         <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next">
 <!--                            <span aria-hidden="true">&raquo;</span>-->
-                            <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                 </ul>
@@ -67,7 +66,8 @@
                         </form>
                     </div>
                     <div style="display: inline-block">
-                        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+                        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}"
+                              onsubmit="return confirm('Ви впевнені, що хочете видалити цю книгу?');">
                             <input class="smallButtonRed" type="submit" th:value="#{show.delete}"/>
                         </form>
                     </div>
