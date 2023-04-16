@@ -25,7 +25,7 @@ public class AdminController {
     public String admin(Model model ,@PathVariable("id") int id,
                         @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
-        int peoplePerPage = 5;
+        int peoplePerPage = 8;
 
         model.addAttribute("person", peopleService.findOne(id));
 

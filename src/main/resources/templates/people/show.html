@@ -38,28 +38,31 @@
 
             <div th:if="${!books.isEmpty()}">
 
-                <h1 class="midlTextLeft" th:text="#{show.yourBooks}"></h1>
-
-                <form th:action="@{/people/{id}(id=${person.id})}" th:method="get">
-                    <div class="col-50">
-                        <input class="formForTextMore" type="text" name="searchTerm" placeholder="Search for books">
-                    </div>
-                    <div class="col-50">
-                        <button class="bigButton" type="submit">SEARCH</button>
-                    </div>
-                </form>
+                <div class="col-50">
+                    <h1 class="midlTextLeft" th:text="#{show.yourBooks}"></h1>
+                </div>
+                <div class="col-50">
+                    <form th:action="@{/people/{id}(id=${person.id})}" th:method="get">
+                        <div class="col-50">
+                            <input class="formForTextMore" type="text" name="searchTerm">
+                        </div>
+                        <div class="col-50">
+                            <input class="midlButton" type="submit" th:value="#{show.search}"/>
+                        </div>
+                    </form>
+                </div>
 
                 <ul class="pagination">
                     <li style="display: inline-block" th:unless="${currentPage >= totalPages}">
                         <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage + 1})}" aria-label="Next"
                            style="text-decoration: none">
-                            <span class="smallButtonGreen" aria-hidden="true"><<</span>
+                            <span class="smallButtonGreenMore" aria-hidden="true"><<</span>
                         </a>
                     </li>
                     <li style="display: inline-block" th:if="${currentPage > 1}">
                         <a th:href="@{/people/{id}(id=${person.id}, page=${currentPage - 1})}"
                            aria-label="Previous" style="text-decoration: none">
-                            <span class="smallButtonGreen" aria-hidden="true">>></span>
+                            <span class="smallButtonGreenMore" aria-hidden="true">>></span>
                         </a>
                     </li>
                 </ul>
@@ -84,6 +87,8 @@
 
                 </div>
             </div>
+
+            <br/>
 
             <line class="line"></line>
 
@@ -123,7 +128,7 @@
             <line class="line"></line>
 
             <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
-                <input class="bigButton" type="submit" th:value="#{admin.toBook}">
+                <input class="bigButton" type="submit" th:value="#{show.toBook}">
             </form>
 
             <form th:method="POST" th:action="@{/logout}">

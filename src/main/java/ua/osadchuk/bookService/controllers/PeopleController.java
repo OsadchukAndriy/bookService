@@ -53,7 +53,7 @@ public class PeopleController {
                        @RequestParam(value = "searchTerm", required = false) String searchTerm,
                        Model model) {
 
-        int booksPerPage = 10;
+        int booksPerPage = 8;
 
         model.addAttribute("person", peopleService.findOne(id));
 

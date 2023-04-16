@@ -34,13 +34,13 @@
                 <li style="display: inline-block" th:unless="${currentPage >= totalPages}">
                     <a th:href="@{/admin/{id}(id=${person.getId()}, page=${currentPage + 1})}" aria-label="Next"
                        style="text-decoration: none">
-                        <span class="smallButtonGreen" aria-hidden="true"><<</span>
+                        <span class="smallButtonGreenMore" aria-hidden="true"><<</span>
                     </a>
                 </li>
                 <li style="display: inline-block" th:if="${currentPage > 1}">
                     <a th:href="@{/admin/{id}(id=${person.getId()},page=${currentPage - 1})}"
                        aria-label="Previous" style="text-decoration: none">
-                        <span class="smallButtonGreen" aria-hidden="true">>></span>
+                        <span class="smallButtonGreenMore" aria-hidden="true">>></span>
                     </a>
                 </li>
             </ul>
