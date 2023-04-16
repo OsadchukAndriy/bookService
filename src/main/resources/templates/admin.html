@@ -30,12 +30,30 @@
             <h2 class="midlTextLeft" th:text="#{admin.title} + ' ' + ${person.getName()}"></h2>
             <line class="line"></line>
 
+            <ul class="pagination">
+                <li style="display: inline-block" th:unless="${currentPage >= totalPages}">
+                    <a th:href="@{/admin/{id}(id=${person.getId()}, page=${currentPage + 1})}" aria-label="Next"
+                       style="text-decoration: none">
+                        <span class="smallButtonGreen" aria-hidden="true"><<</span>
+                    </a>
+                </li>
+                <li style="display: inline-block" th:if="${currentPage > 1}">
+                    <a th:href="@{/admin/{id}(id=${person.getId()},page=${currentPage - 1})}"
+                       aria-label="Previous" style="text-decoration: none">
+                        <span class="smallButtonGreen" aria-hidden="true">>></span>
+                    </a>
+                </li>
+            </ul>
+
+
             <div th:each="person, iterStat : ${people}">
+
 
                 <div class="smallText" style="display: inline-block"
                      th:href="@{/people/{id}(id=${person.getId()})}"
-                     th:text="${(iterStat.index + 1) + '. ' + person.getName()}">user
+                     th:text="${(iterStat.index + start + 1) + '. ' + person.getName()}">user
                 </div>
+
 
                 <div style="display: inline-block" th:if="${person.getRole().equals('ROLE_USER')}">
                     <form style="display: inline-block" th:method="PATCH"

@@ -37,7 +37,7 @@ public class PeopleController {
         int a = personDetails.getPerson().getId();
 
         if (personDetails.getPerson().getRole().equals("ROLE_ADMIN")) {
-            return adminController.admin(model, a);
+            return adminController.admin(model, a, 1);
         }
         if (personDetails.getPerson().isBlock() == true) {
             return blockController.block();
