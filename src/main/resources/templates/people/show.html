@@ -90,6 +90,10 @@
 
             <br/>
 
+            <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
+                <input class="midlButtonLeft" type="submit" th:value="#{show.toBook}">
+            </form>
+
             <line class="line"></line>
 
             <h2 class="midlTextLeft" th:text="#{show.createNew}"></h2>
@@ -122,14 +126,10 @@
                     <div class="warning" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
                 </div>
 
-                <input class="leftButton" type="submit" th:value="#{show.create}"/>
+                <input class="midlButtonLeft" type="submit" th:value="#{show.create}"/>
             </form>
 
             <line class="line"></line>
-
-            <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
-                <input class="bigButton" type="submit" th:value="#{show.toBook}">
-            </form>
 
             <form th:method="POST" th:action="@{/logout}">
                 <input class="bigButton" type="submit" th:value="#{logout}"/>
