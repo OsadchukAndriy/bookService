@@ -29,7 +29,15 @@
         <div class="formWindow">
 
             <h1 class="midlTextLeft" th:text="#{show.bookService} + ' ' + ${person.getName()}"></h1>
+            <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
+                <input class="bigButton" type="submit" th:value="#{admin.toBook}">
+            </form>
             <line class="line"></line>
+
+            <form th:action="@{/people/{id}(id=${person.id})}" th:method="get">
+                <input type="text" name="searchTerm" placeholder="Search for books">
+                <button type="submit">Search</button>
+            </form>
 
             <div th:if="${books.isEmpty()}">
                 <h3 class="midlTextLeft" th:text="#{show.ifNull}"></h3>

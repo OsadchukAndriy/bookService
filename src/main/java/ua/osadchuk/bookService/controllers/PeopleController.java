@@ -44,13 +44,14 @@ public class PeopleController {
             return blockController.block();
         }
 
-        return show(book, a, 1, model);
+        return show(book, a, 1, null, model);
     }
 
     @GetMapping("people/{id}")
     public String show(@ModelAttribute("book") Book book,
                        @PathVariable("id") int id,
                        @RequestParam(value = "page", defaultValue = "1") int pageNumber,
+                       @RequestParam(value = "searchTerm", required = false) String searchTerm,
                        Model model) {
 
         int booksPerPage = 10;
@@ -58,6 +59,13 @@ public class PeopleController {
         model.addAttribute("person", peopleService.findOne(id));
 
         List<Book> books = peopleService.getBooksByPersonId(id);
+
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            books = books.stream()
+                    .filter(b -> b.getName().contains(searchTerm) || b.getAuthor().contains(searchTerm))
+                    .collect(Collectors.toList());
+        }
+
         int totalBooks = books.size();
 
         int totalPages = (int) Math.ceil((double) totalBooks / booksPerPage);
