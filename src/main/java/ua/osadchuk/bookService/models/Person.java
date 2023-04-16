@@ -19,7 +19,7 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @Size(min = 2, max = 25, message = "Password must be between 2 and 25 characters long")
+    @Size(min = 2, max = 100, message = "Password must be between 2 and 25 characters long")
     @Column(name = "password")
     private String password;
 

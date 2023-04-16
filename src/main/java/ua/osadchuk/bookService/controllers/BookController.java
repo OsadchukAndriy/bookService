@@ -61,7 +61,7 @@ public class BookController {
     public String create(Model model, @PathVariable("id") int id, @ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult, @ModelAttribute("person") @Valid Person person) {
         if (bindingResult.hasErrors()) {
-            return "books/new";
+            return "redirect:/people/" + id;
         }
         book.setOwner(peopleService.findOne(id));
         book.setId(0);
