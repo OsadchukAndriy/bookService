@@ -25,7 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
+                .antMatchers("/auth/login",
+                        "/auth/registration",
+                        "/error",
+                        "/css/reset.css",
+                        "/css/main.css",
+                        "/css/confirm-popup.css",
+                        "/css/images/wallpaperbetter.jpg").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().loginPage("/auth/login")
@@ -37,15 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/auth/login");
 
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(
-                "/css/reset.css",
-                "/css/main.css",
-                "/css/images/wallpaperbetter.jpg"
-        );
     }
 
     @Override
