@@ -11,7 +11,6 @@ import ua.osadchuk.bookService.security.PersonDetails;
 import ua.osadchuk.bookService.services.PeopleService;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Controller

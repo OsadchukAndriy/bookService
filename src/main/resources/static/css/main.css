@@ -328,6 +328,29 @@ body {
 
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
 }
+
+.formForTextMore {
+    height: 34px;
+    margin-bottom: 40px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+
+    font-family: 'Baskervville', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #287233;
+
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+}
+
 .col-50 {
     float: left;
     width: 50%;

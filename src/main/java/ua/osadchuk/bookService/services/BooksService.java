@@ -8,7 +8,6 @@ import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.repositories.BooksRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

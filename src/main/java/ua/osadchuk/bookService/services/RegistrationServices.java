@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.osadchuk.bookService.models.Person;
 import ua.osadchuk.bookService.repositories.PeopleRepository;
 
-
 @Service
 public class RegistrationServices {
 
