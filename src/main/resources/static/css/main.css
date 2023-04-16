@@ -136,7 +136,7 @@ body {
     height: 0;
     left: 52px;
     top: 86px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
 
     border: 1.7px solid #2A4A63;
     box-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.15);
@@ -167,6 +167,7 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .bigButton:hover {
     background-position: right;
 }
@@ -195,7 +196,37 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .midlButton:hover {
+    background-position: right;
+}
+
+.midlButtonLeft {
+    margin-bottom: 20px;
+    display: block;
+    background: linear-gradient(to left, #D4B49B, #BF8E68);
+    border: 1px solid #2A4A63;
+    border-radius: 26px;
+    height: 32px;
+    width: 160px;
+
+    font-family: 'Baskervville', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.15);
+
+    background-size: 200%;
+    transition: .5s;
+}
+
+.midlButtonLeft:hover {
     background-position: right;
 }
 
@@ -223,6 +254,7 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .leftButton:hover {
     background-position: right;
 }
@@ -251,6 +283,7 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .smallButtonGreen:hover {
     background-position: right;
 }
@@ -279,6 +312,7 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .smallButtonGreenMore:hover {
     background-position: right;
 }
@@ -307,6 +341,7 @@ body {
     background-size: 200%;
     transition: .5s;
 }
+
 .smallButtonRed:hover {
     background-position: right;
 }
@@ -340,7 +375,7 @@ body {
 .midlTextLeft {
     font-weight: 400;
     font-size: 28px;
-    line-height: 35px;
+    line-height: 32px;
     margin-bottom: 34px;
 
     text-align: left;
