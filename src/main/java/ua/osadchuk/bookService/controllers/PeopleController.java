@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.osadchuk.bookService.models.Book;
 import ua.osadchuk.bookService.security.PersonDetails;
+import ua.osadchuk.bookService.services.PaginationService;
 import ua.osadchuk.bookService.services.PeopleService;
 
 import java.util.List;
@@ -19,13 +20,14 @@ public class PeopleController {
 
     private final PeopleService peopleService;
     private final AdminController adminController;
-
+    private final PaginationService paginationService;
     private final BlockController blockController;
 
     @Autowired
-    public PeopleController(PeopleService peopleService, AdminController adminController, BlockController blockController) {
+    public PeopleController(PeopleService peopleService, AdminController adminController, PaginationService paginationService, BlockController blockController) {
         this.peopleService = peopleService;
         this.adminController = adminController;
+        this.paginationService = paginationService;
         this.blockController = blockController;
     }
 
@@ -54,31 +56,15 @@ public class PeopleController {
                        Model model) {
 
         int booksPerPage = 8;
-
         model.addAttribute("person", peopleService.findOne(id));
-
         List<Book> books = peopleService.getBooksByPersonId(id);
-
         if (searchTerm != null && !searchTerm.isEmpty()) {
             books = books.stream()
                     .filter(b -> b.getName().contains(searchTerm) || b.getAuthor().contains(searchTerm))
                     .collect(Collectors.toList());
         }
-
-        int totalBooks = books.size();
-
-        int totalPages = (int) Math.ceil((double) totalBooks / booksPerPage);
-        int startBookIndex = (totalBooks - (pageNumber - 1) * booksPerPage) - 1;
-        int endBookIndex = Math.max(startBookIndex - booksPerPage, -1) + 1;
-
-        books = books.subList(endBookIndex, startBookIndex + 1); // get only the books for the current page
-
-        model.addAttribute("start", endBookIndex);
-        model.addAttribute("books", books);
-        model.addAttribute("currentPage", pageNumber);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("book", new Book()); // assign a value to the "book" attribute
-
+        paginationService.paginate(books, pageNumber, booksPerPage, model, "books");
+        model.addAttribute("book", new Book());
         return "people/show";
     }
 }
