@@ -87,13 +87,19 @@
 
             <line class="line"></line>
 
-            <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
-                <input class="bigButton" type="submit" th:value="#{admin.toBook}">
-            </form>
+            <div>
+                <div class="col-50">
+                    <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
+                        <input class="midlButtonLeft" type="submit" th:value="#{admin.toBook}">
+                    </form>
+                </div>
 
-            <form th:action="@{/logout}" th:method="POST">
-                <input class="bigButton" type="submit" th:value="#{logout}">
-            </form>
+                <div class="col-50">
+                    <form th:action="@{/logout}" th:method="POST">
+                        <input class="midlButtonRight" type="submit" th:value="#{logout}">
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -46,12 +46,14 @@
                         password: </label>
                 </div>
                 <div class="col-50">
-                    <input class="formForText" type="text" th:field="*{password}" id="password"/>
+                    <input class="formForText" type="text" th:field="*{password}" id="password">
+                    <br/>
+                    <br/>
+                    </input>
                     <div class="warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password
                         Error
                     </div>
                 </div>
-
 
                 <input class="bigButton" type="submit" th:value="#{registration.sigUp}"/>
 

@@ -104,7 +104,7 @@
                     <label class="midlText" for="name" th:text="#{show.bookName}"></label>
                 </div>
                 <div class="col-50">
-                    <input class="formForText" type="text" th:field="*{name}" id="name"/>
+                    <input class="formForTextRight" type="text" th:field="*{name}" id="name"/>
                     <div class="warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
                 </div>
 
@@ -112,7 +112,7 @@
                     <label class="midlText" for="yearOfRealise" th:text="#{show.year}"></label>
                 </div>
                 <div class="col-50">
-                    <input class="formForText" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
+                    <input class="formForTextRight" type="text" th:field="*{yearOfRealise}" id="yearOfRealise"/>
                     <div class="warning" th:if="${#fields.hasErrors('yearOfRealise')}" th:errors="*{yearOfRealise}">
                         yearOfRealise Error
                     </div>
@@ -122,7 +122,7 @@
                     <label class="midlText" for="author" th:text="#{show.author}"></label>
                 </div>
                 <div class="col-50">
-                    <input class="formForText" type="text" th:field="*{author}" id="author"/>
+                    <input class="formForTextRight" type="text" th:field="*{author}" id="author"/>
                     <div class="warning" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author Error</div>
                 </div>
 
@@ -132,7 +132,7 @@
             <line class="line"></line>
 
             <form th:method="POST" th:action="@{/logout}">
-                <input class="bigButton" type="submit" th:value="#{logout}"/>
+                <input class="midlButtonRight" type="submit" th:value="#{logout}"/>
             </form>
 
         </div>

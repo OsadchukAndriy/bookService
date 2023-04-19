@@ -173,12 +173,13 @@ body {
 }
 
 .midlButton {
+    float: right;
     display: block;
     background: linear-gradient(to left, #D4B49B, #BF8E68);
     border: 1px solid #2A4A63;
     border-radius: 26px;
     height: 32px;
-    width: 120px;
+    width: 140px;
     margin: 0 auto 37px;
 
     font-family: 'Baskervville', serif;
@@ -227,6 +228,35 @@ body {
 }
 
 .midlButtonLeft:hover {
+    background-position: right;
+}
+
+.midlButtonRight {
+    float: right;
+    display: block;
+    background: linear-gradient(to left, #D4B49B, #BF8E68);
+    border: 1px solid #2A4A63;
+    border-radius: 26px;
+    height: 32px;
+    width: 160px;
+
+    font-family: 'Baskervville', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #2A4A63;
+    text-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.15);
+
+    background-size: 200%;
+    transition: .5s;
+}
+
+.midlButtonRight:hover {
     background-position: right;
 }
 
@@ -400,7 +430,31 @@ body {
 
 .formForText {
     height: 34px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
+
+    background: #F0E5DD;
+    border: 0.86px solid #2A4A63;
+    box-shadow: 0 3.4px 3.4px rgba(0, 0, 0, 0.15);
+    border-radius: 25.6px;
+
+    font-family: 'Baskervville', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #287233;
+
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.formForTextRight {
+    float: right;
+    height: 34px;
+    width: 350px;
+    margin-bottom: 28px;
 
     background: #F0E5DD;
     border: 0.86px solid #2A4A63;
