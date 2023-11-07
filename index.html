@@ -1,9 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $("#locales").val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 <body>
 
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<section class="section">
 
+    <div class="wrapper">
+
+        <div class="form">
+            <h1 class="bigText" th:text="#{login.welcome}"></h1>
+
+            <form method="post" action="/process_login">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                <div class="col-50">
+                    <label class="midlText" for="username" th:text="#{login.enterName}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="text" name="username" id="username"/>
+                </div>
+
+                <div class="col-50">
+                    <label class="midlText" for="password" th:text="#{login.enterPassword}"></label>
+                </div>
+                <div class="col-50">
+                    <input class="formForText" type="password" name="password" id="password"/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <div class="warning" th:if="${param.error}" th:text="#{login.wrong}">
+                </div>
+
+                <input class="bigButton" type="submit" th:value="#{login.login}"/>
+            </form>
+
+            <form th:method="GET" th:action="@{/auth/registration}">
+                <input class="bigButton" type="submit" th:value="#{login.registration}"/>
+            </form>
+
+        </div>
+
+        <div class="changeLanguageForm">
+            <span class="changeLanguage" th:text="#{login.changeLang}"></span>
+            <select class="changeLanguageMiniForm" id="locales">
+                <option value=""></option>
+                <option value="en">English</option>
+                <option value="ua">Українська</option>
+            </select>
+        </div>
+
+    </div>
+</section>
 </body>
 </html>

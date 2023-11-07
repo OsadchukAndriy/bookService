@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ua.osadchuk</groupId>
 	<artifactId>bookService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT0.0.1-SNAPSHOT</version>
 	<name>bookService</name>
 	<description>Book project for Spring Boot</description>
 	<properties>
