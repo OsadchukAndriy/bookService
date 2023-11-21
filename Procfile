@@ -1,1 +1,1 @@
-web: java -jar bookService.jar
+web: java -jar -Dserver.port=$PORT bookService.jar
