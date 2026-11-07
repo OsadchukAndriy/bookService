@@ -1,5 +1,6 @@
 package ua.osadchuk.bookService;
 
+import org.springframework.test.context.ActiveProfiles;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
+@ActiveProfiles("test")
 public class BooksServiceTest {
 
 	@Autowired
